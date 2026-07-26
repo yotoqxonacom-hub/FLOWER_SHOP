@@ -1,7 +1,7 @@
 
 import { Request, Response } from "express";
 import { T } from "../libs/types/common";
-import MemberService from "../models/member.servive";
+import MemberService from "../models/Member.service";
 
 const flowerController: T = {};
 

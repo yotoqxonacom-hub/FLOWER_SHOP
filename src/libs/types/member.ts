@@ -22,7 +22,7 @@ export interface MemberInput {
     memberStatus?: MemberStatus;
     memberNick: string;
     memberPhone: string;
-    memberPassword?: string;
+    memberPassword: string;
     memberAddress?: string;
     memberDesc?: string;
     memberImage?: string;

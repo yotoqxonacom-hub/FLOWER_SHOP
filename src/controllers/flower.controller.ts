@@ -17,15 +17,6 @@ flowerController.goHome = (req: Request, res: Response) => {
     }
 };
 
-flowerController.getLogin = (req: Request, res: Response) => {
-    try {
-        console.log("getLogin:");
-        res.send("Login Page")
-    } catch (err) {
-        console.log(" Error, getLogin:", err)
-    }
-};
-
 flowerController.getSignup = (req: Request, res: Response) => {
     try {
         console.log("getSignup:");
@@ -35,27 +26,24 @@ flowerController.getSignup = (req: Request, res: Response) => {
     }
 };
 
-flowerController.processLogin = async (req: Request, res: Response) => {
-    try {
-        console.log("processLogin:");
-        console.log("body:", req.body)
-        const input: LoginInput = req.body;
 
-        const result = await memberService.processLogin(input);
-        res.send(result)
+flowerController.getLogin = (req: Request, res: Response) => {
+    try {
+        console.log("getLogin:");
+        res.send("Login Page")
     } catch (err) {
-        res.send(err)
-        console.log(" Error, processLogin:", err)
+        console.log(" Error, getLogin:", err)
     }
 };
+
 
 flowerController.processSignup = async (req: Request, res: Response) => {
     try {
         console.log("processSignup:");
         const newMember: MemberInput = req.body;
-
         newMember.memberType = MemberType.FLOWER;
         const result = await memberService.processSignup(newMember);
+        // TODO SESSION AUTHENTICATION
 
         res.send(result)
     } catch (err) {
@@ -63,5 +51,21 @@ flowerController.processSignup = async (req: Request, res: Response) => {
         res.send(err)
     }
 };
+
+flowerController.processLogin = async (req: Request, res: Response) => {
+    try {
+        console.log("processLogin:");
+        const input: LoginInput = req.body,
+            result = await memberService.processLogin(input);
+        // TODO SESSION AUTHENTICATION
+
+
+        res.send(result)
+    } catch (err) {
+        res.send(err)
+        console.log(" Error, processLogin:", err)
+    }
+};
+
 
 export default flowerController;

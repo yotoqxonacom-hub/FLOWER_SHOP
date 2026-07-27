@@ -11,7 +11,7 @@ const memberService = new MemberService();
 flowerController.goHome = (req: Request, res: Response) => {
     try {
         console.log("goHome:");
-        res.send("Home Page")
+        res.render("home");
     } catch (err) {
         console.log(" Error, goHome:", err)
     }
@@ -20,7 +20,7 @@ flowerController.goHome = (req: Request, res: Response) => {
 flowerController.getSignup = (req: Request, res: Response) => {
     try {
         console.log("getSignup:");
-        res.send("Signup Page")
+        res.render("signup");
     } catch (err) {
         console.log(" Error, getSignup:", err)
     }
@@ -30,7 +30,7 @@ flowerController.getSignup = (req: Request, res: Response) => {
 flowerController.getLogin = (req: Request, res: Response) => {
     try {
         console.log("getLogin:");
-        res.send("Login Page")
+        res.render("login");
     } catch (err) {
         console.log(" Error, getLogin:", err)
     }

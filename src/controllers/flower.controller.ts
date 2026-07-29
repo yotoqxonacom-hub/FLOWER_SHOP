@@ -4,6 +4,7 @@ import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
+import { Message } from "../libs/Errors";
 
 const flowerController: T = {};
 const memberService = new MemberService();
@@ -43,7 +44,7 @@ flowerController.processSignup = async (req: AdminRequest, res: Response) => {
         const newMember: MemberInput = req.body;
         newMember.memberType = MemberType.FLOWER;
         const result = await memberService.processSignup(newMember);
-        // TODO SESSION AUTHENTICATION
+
         req.session.member = result;
         req.session.save(() => {
             res.send(result);
@@ -61,7 +62,7 @@ flowerController.processLogin = async (req: AdminRequest, res: Response) => {
         console.log("processLogin:");
         const input: LoginInput = req.body,
             result = await memberService.processLogin(input);
-        // TODO SESSION AUTHENTICATION
+
         req.session.member = result;
         req.session.save(() => {
             res.send(result);
@@ -71,6 +72,18 @@ flowerController.processLogin = async (req: AdminRequest, res: Response) => {
     } catch (err) {
         res.send(err)
         console.log(" Error, processLogin:", err)
+    }
+};
+
+
+flowerController.checkAuthSession = async (req: AdminRequest, res: Response) => {
+    try {
+        console.log("checkAuthSession:");
+        if (req.session?.member) res.send(`Hi, ${req.session.member.memberNick}`);
+        else res.send(`<script> alert("${Message.NOT_AUTHENTICATED}") </script>`);
+    } catch (err) {
+        res.send(err)
+        console.log(" Error, checkAuthSession:", err)
     }
 };
 

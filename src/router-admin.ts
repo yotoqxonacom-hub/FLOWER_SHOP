@@ -13,6 +13,9 @@ routerAdmin
     .get("/signup", flowerController.getSignup)
     .post("/signup", flowerController.processSignup);
 
+routerAdmin
+    .get("/check-me", flowerController.checkAuthSession);
+
 /** PRODUCTS **/
 /** USER **/
 

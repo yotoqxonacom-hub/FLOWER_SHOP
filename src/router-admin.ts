@@ -4,16 +4,12 @@ import flowerController from "./controllers/flower.controller";
 
 
 /** FLOWER_SHOP**/
-routerAdmin.get("/", flowerController.goHome);
-
-routerAdmin
+routerAdmin.get("/", flowerController.goHome)
     .get("/login", flowerController.getLogin)
-    .post("/login", flowerController.processLogin);
-routerAdmin
+    .post("/login", flowerController.processLogin)
     .get("/signup", flowerController.getSignup)
-    .post("/signup", flowerController.processSignup);
-
-routerAdmin
+    .post("/signup", flowerController.processSignup)
+    .get("/logout", flowerController.logout)
     .get("/check-me", flowerController.checkAuthSession);
 
 /** PRODUCTS **/

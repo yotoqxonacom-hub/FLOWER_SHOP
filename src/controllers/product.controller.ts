@@ -25,7 +25,7 @@ productController.getAllProducts = async (req: AdminRequest, res: Response) => {
 productController.createNewProduct = async (req: Request, res: Response) => {
     try {
         console.log("createNewProduct");
-
+        res.send("DONE");
     } catch (err) {
         console.log(" Error, createNewProduct", err)
         if (err instanceof Errors)
@@ -39,7 +39,7 @@ productController.createNewProduct = async (req: Request, res: Response) => {
 productController.updateChosenProduct = async (req: Request, res: Response) => {
     try {
         console.log("updateChosenProduct");
-
+        res.send("DONE");
     } catch (err) {
         console.log(" Error, updateChosenProduc", err)
         if (err instanceof Errors)

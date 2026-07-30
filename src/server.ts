@@ -8,7 +8,7 @@ import app from "./app";
 
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URL as string, {}).then((data) => {
-    const PORT = process.env.PORT ?? 3030;
+    const PORT = process.env.PORT ?? 3033;
     app.listen(PORT, function () {
         console.info(`The server is running succesfully on port ${PORT}`);
         console.info(` admin project on http://localhost:${PORT}/admin \n`)

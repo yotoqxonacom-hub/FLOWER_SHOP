@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { ProductCollection, ProductSize, ProductStatus } from "../libs/enums/product.enunm";
+import { ProductCollection, ProductSize, ProductStatus } from "../libs/enums/product.enum";
 
 const productSchema = new Schema(
     {
@@ -38,7 +38,6 @@ const productSchema = new Schema(
 
         productDesc: {
             type: String,
-            required: true,
         },
 
         productImages: {

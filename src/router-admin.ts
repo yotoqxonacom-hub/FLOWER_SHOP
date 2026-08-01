@@ -24,6 +24,6 @@ routerAdmin
 
 routerAdmin
     .get("/user/all", flowerController.verfyRestaurant, flowerController.getUsers)
-    .post("/user/update", flowerController.verfyRestaurant, flowerController.updateChosenUsers)
+    .post("/user/edit", flowerController.verfyRestaurant, flowerController.updateChosenUsers)
 
 export default routerAdmin;

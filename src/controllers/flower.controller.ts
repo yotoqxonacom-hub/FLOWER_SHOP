@@ -100,6 +100,30 @@ flowerController.logout = async (req: AdminRequest, res: Response) => {
 };
 
 
+flowerController.getUsers = async (req: Request, res: Response) => {
+    try {
+        console.log("getUsers:");
+        const result = await memberService.getUsers();
+        res.render("users", { users: result });
+
+    } catch (err) {
+        console.log(" Error, getUsers:", err);
+        res.redirect("/admin/login");
+    }
+};
+
+
+flowerController.updateChosenUsers = async (req: Request, res: Response) => {
+    try {
+        console.log("updateChosenUsers:");
+        res.render("users");
+    } catch (err) {
+        console.log(" Error, updateChosenUsers:", err);
+        res.redirect("/admin");
+    }
+};
+
+
 flowerController.checkAuthSession = async (req: AdminRequest, res: Response) => {
     try {
         console.log("checkAuthSession:");

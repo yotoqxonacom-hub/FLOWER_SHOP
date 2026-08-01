@@ -88,6 +88,17 @@ class MemberService {
 
     }
 
+
+    public async getUsers(): Promise<Member[]> {
+        const result = await this.memberModel
+            .find({ memberType: MemberType.USER })
+            .lean().exec() as unknown as Member[];
+
+        if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+        return result;
+
+    }
+
 }
 
 

@@ -1,7 +1,63 @@
-<%- include("includes/header") %>
+<%- include('includes/header') %>
 
-    <body>
-        <div class="format1">HOME PAGE</div>
-    </body>
+  <link rel="stylesheet" type="text/css" href="/css/home.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
 
-    </html><%- include("includes/footer") %>
+  <body>
+    <div class="home-container">
+      <div class="navigation-menu">
+        <ul class="nav justify-content-center">
+          <li class="nav-item" style="cursor: pointer">
+            <a class="nav-link active" href="/admin">Home</a>
+          </li>
+          <% if(!member) { %>
+            <li class="nav-item" style="cursor: pointer">
+              <a class="nav-link" href="/admin/signup">Signup</a>
+            </li>
+            <li class="nav-item" style="cursor: pointer">
+              <a class="nav-link" href="/admin/login">Login</a>
+            </li>
+            <% } else { %>
+              <li class="nav-item" style="cursor: pointer">
+                <a class="nav-link" href="/admin/product/all">Menu</a>
+              </li>
+              <li class="nav-item" style="cursor: pointer">
+                <a class="nav-link" href="/admin/user/all">Users</a>
+              </li>
+              <li class="nav-item" style="cursor: pointer" onclick="return confirm('Do you want to logout?')">
+                <a class="nav-link" href="/admin/logout">Logout</a>
+              </li>
+              <% } %>
+        </ul>
+      </div>
+
+      <div class="animation-frame">
+        <div class="animate-box">
+          <svg class="svg-container" viewBox="-50 -50 200 200">
+            <circle cx="50" cy="50" r="40" class="sun-circle" />
+            <circle cx="72" cy="34" r="40" class="moon-shadow" />
+
+            <line x1="50" y1="-25" x2="50" y2="-5" class="sun-rays" />
+            <line x1="50" y1="125" x2="50" y2="105" class="sun-rays" />
+
+            <line x1="-25" y1="50" x2="-5" y2="50" class="sun-rays" />
+            <line x1="125" y1="50" x2="105" y2="50" class="sun-rays" />
+
+            <line x1="-5" y1="-5" x2="10" y2="10" class="sun-rays" />
+            <line x1="90" y1="90" x2="105" y2="105" class="sun-rays" />
+
+            <line x1="15" y1="85" x2="-5" y2="105" class="sun-rays" />
+            <line x1="105" y1="-5" x2="85" y2="15" class="sun-rays" />
+
+            Sorry, your browser does not support inline SVG.
+          </svg>
+
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/js/home.js"></script>
+  </body>
+
+  <%- include('includes/footer') %>

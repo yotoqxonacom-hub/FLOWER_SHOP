@@ -1,0 +1,68 @@
+.home-container {
+  position: relative;
+  width: auto;
+  height: auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #FCE4EC, #FFF9C4, #C8E6C9, #FFEBEE);
+}
+
+.home-container a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.home-container .nav-item a {
+  color: #3d3932;
+  font-weight: bolder;
+}
+
+.home-container .nav-item a.disabled {
+  color: #898071;
+}
+
+.home-container .navigation-menu {
+  position: relative;
+  z-index: 10000;
+  color: #efefee;
+  font-size: 40px;
+  font-family: monospace;
+}
+
+.home-container .animation-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 55px;
+}
+
+.home-container .animate-box {
+  width: 30rem;
+  height: 30rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.home-container .svg-container {
+  width: 30rem;
+  height: 30rem;
+}
+
+.home-container .sun-circle {
+  fill: #fefffd;
+}
+
+.home-container .moon-shadow {
+  fill: #9da5d4;
+}
+
+.home-container .sun-rays {
+  stroke: #fefffd;
+  stroke-width: 8;
+  stroke-linecap: round;
+}

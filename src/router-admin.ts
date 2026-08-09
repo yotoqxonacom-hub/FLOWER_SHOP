@@ -17,7 +17,7 @@ routerAdmin.get("/", flowerController.goHome)
 /** PRODUCTS **/
 routerAdmin
     .get("/product/all", flowerController.verfyRestaurant, productController.getAllProducts)
-    .post("/product/create", makeUploader("products").array("productImage"), flowerController.verfyRestaurant, productController.createNewProduct)
+    .post("/product/create", makeUploader("products").array("productImages", 5), flowerController.verfyRestaurant, productController.createNewProduct)
     .post("/product/:id", flowerController.verfyRestaurant, productController.updateChosenProduct)
 
 /** USER **/

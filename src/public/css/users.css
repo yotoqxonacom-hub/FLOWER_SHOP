@@ -16,7 +16,7 @@
 }
 
 .users-container .nav-item a {
-  color: #e3c08d;
+  color: #363533;
 }
 
 .users-container .nav-item a.disabled {
@@ -27,7 +27,7 @@
   position: absolute;
   z-index: 10000;
   top: 1%;
-  color: #efefee;
+  color: #cfcfc2;
   font-size: 40px;
   font-family: monospace;
 }
@@ -79,7 +79,7 @@
   font-weight: 400;
   font-size: 30px;
   line-height: 25px;
-  color: #ffffff;
+  color: #312f2f;
 }
 
 .users-container select:focus {

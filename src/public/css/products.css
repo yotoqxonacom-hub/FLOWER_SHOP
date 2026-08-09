@@ -15,7 +15,7 @@
 }
 
 .products-container .nav-item a {
-  color: #e3c08d;
+  color: #272726;
 }
 
 .products-container .nav-item a.disabled {
@@ -80,7 +80,7 @@
   font-weight: 400;
   font-size: 30px;
   line-height: 25px;
-  color: #ffffff;
+  color: #1f1d1d;
 }
 
 .products-container .long-input {

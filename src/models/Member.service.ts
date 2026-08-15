@@ -1,5 +1,5 @@
 import { shapeIntoMongooseObjectId } from "../libs/config";
-import { MemberType } from "../libs/enums/member.enum";
+import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { LoginInput, Member, MemberInput, MemberUpdateInput } from "../libs/types/member";
 import MemberSchemaModel from "../schema/MemberSchemaModel";
@@ -28,25 +28,45 @@ class MemberService {
             throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
         }
     }
-
     public async login(input: LoginInput): Promise<Member> {
-        const member = await this.memberModel.
-            findOne({ memberNick: input.memberNick }, // filter
-                { memberNick: 1, memberPassword: 1 })  // projection
+        const member = await this.memberModel
+            .findOne(
+                {
+                    memberNick: input.memberNick,
+                    memberStatus: { $ne: MemberStatus.DELETE },
+                },
+                { memberNick: 1, memberPassword: 1, memberStatus: 1 },
+            )
             .exec();
-        if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
 
-        const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword);
+        if (!member) {
+            throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+        }
+
+        if (member.memberStatus === MemberStatus.BLOCK) {
+            throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
+        }
+
+        if (!member.memberPassword) {
+            throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
+        }
+
+        const isMatch = await bcrypt.compare(
+            input.memberPassword,
+            member.memberPassword,
+        );
 
         if (!isMatch) {
             throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
         }
 
-        return await this.memberModel.findById(member._id).lean().exec() as unknown as Member;
+        const found = await this.memberModel.findById(member._id).lean().exec();
+        if (!found) {
+            throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+        }
 
+        return found as unknown as Member;
     }
-
-
 
 
     /** BSSR **/
